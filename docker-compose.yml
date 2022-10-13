@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  chatbot-rasa:
+    image: rasa/rasa:3.2.10-full
+    volumes:
+    - ./:/app
+    ports:
+    - 5005:5005
+    command: run --enable-api  --cors "*" --debug
+
+  chatbot-rasa-action:
+    image: rasa/rasa:3.2.10-full
+    volumes:
+    - ./:/app
+    expose:
+    - "5055"
+    command: run actions --debug
